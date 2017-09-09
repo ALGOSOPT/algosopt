@@ -161,7 +161,7 @@ int main(int argc, const char * argv[]) {
         int x1, y1, x2, y2;
         cin >> x1 >> y1 >> x2 >> y2 >> n;
         
-        // poly polygon(101) -> 전역으로 선언하면 안된다. 오차가 커져서
+        // poly polygon(101) -> 전역으로 선언하면 안된다. 
         poly polygon(n);
         for(int i = 0 ; i < n ; i++) {
             cin >> polygon[i].x >> polygon[i].y;
