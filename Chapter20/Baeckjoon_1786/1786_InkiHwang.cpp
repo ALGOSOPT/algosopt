@@ -1,50 +1,48 @@
 #include <iostream>
 #include <cstdio>
-#include <string>
 #include <vector>
-#include <algorithm>
+#include <string>
 
 using namespace std;
 
-string H,N;
-vector<int> pi;
+string H;
+string N;
 
-void getpi()
+vector<int> getpi()
 {
   int n = N.size();
-  pi.resize(n);
-  fill(pi.begin(), pi.end(), 0);
+  vector<int> pi(n, 0);
 
   int j=0;
   for(int i=1; i<n; i++) {
-    while(j > 0 && N[i] != N[j]) {
+    while(j>0 && N[i] != N[j]) {
       j = pi[j-1];
     }
     if(N[i] == N[j]) {
       pi[i] = ++j;
     }
   }
+  return pi;
 }
 
-vector<int> kmpSearch()
+vector<int> kmp()
 {
   int h = H.size();
   int n = N.size();
 
+  vector<int> pi = getpi();
   vector<int> ret;
 
   int j=0;
   for(int i=0; i<h; i++) {
-    while(j > 0 && H[i] != N[j]) {
+    while(j>0 && H[i] != N[j]) {
       j = pi[j-1];
     }
     if(H[i] == N[j]) {
-      if(j == n-1) {
-        ret.push_back(i-n+2);
-        j = pi[j];
-      }
-      else {
-        j++;
+      j++;
+      if(j == n) {
+        ret.push_back(i-n+1);
+        j = pi[j-1];
       }
     }
   }
@@ -55,11 +53,10 @@ int main()
 {
   getline(cin, H);
   getline(cin, N);
-  getpi();
-  vector<int> ret = kmpSearch();
-  printf("%d\n", (int)ret.size());
+  vector<int> ret = kmp();
+  printf("%d\n", ret.size());
   for(int i=0; i<ret.size(); i++) {
-    printf("%d\n", ret[i]);
+    printf("%d\n", ret[i]+1);
   }
   return 0;
 }
