@@ -1,44 +1,71 @@
 #include <iostream>
-#include <string>
 #include <cstdio>
 #include <vector>
+#include <string>
+
+
+
 using namespace std;
-vector<int> getPi(string p){
-    int m = (int)p.size(), j=0;
-    vector<int> pi(m, 0);
-    for(int i = 1; i< m ; i++){
-        while(j > 0 && p[i] !=  p[j])
-            j = pi[j-1];
-        if(p[i] == p[j])
-            pi[i] = ++j;
-    }
-    return pi;
+
+vector<int> getPi(string& N){
+
+
+	int m = N.size();
+
+	vector<int> pi(m, 0);
+
+	int matched = 0;
+
+	for(int i = 1; i < m; i++){
+
+		while(matched > 0 && N[i] != N[matched])
+			matched = pi[matched - 1];
+
+		if(N[i] == N[matched]){
+			pi[i]= ++matched;
+		}
+	}
+
+	return pi;
 }
-vector<int> kmp(string s, string p){
-    vector<int> ans;
-    auto pi = getPi(p);
-    int n = (int)s.size(), m = (int)p.size(), j =0;
-    for(int i = 0 ; i < n ; i++){
-        while(j>0 && s[i] != p[j])
-            j = pi[j-1];
-        if(s[i] == p[j]){
-            if(j==m-1){
-                ans.push_back(i-m+1);
-                j = pi[j];
-            }else{
-                j++;
-            }
-        }
-    }
-    return ans;
+
+vector<int> kmp(string& H, string& N){
+
+	int n = H.size(), m = N.size();
+	vector<int> ret;
+
+	vector<int> pi = getPi(N);
+
+	int matched = 0;
+
+	for(int i = 0; i < n; i++){
+
+		while(matched > 0 && H[i] != N[matched])
+			matched = pi[matched - 1];
+
+		if(H[i] == N[matched]){
+			matched++;
+			if(matched == m){
+				ret.push_back(i - m + 1);
+				matched = pi[matched - 1];
+			}
+		}
+	}
+	return ret;
 }
 int main(){
-    string s, p;
-    getline(cin, s);
-    getline(cin, p);
-    auto matched = kmp(s,p);
-    printf("%d\n", (int)matched.size());
-    for(auto i : matched)
-        printf("%d ", i+1);
-    return 0;
+
+
+	string H, N;
+
+	getline(cin, H);
+	getline(cin, N);
+
+	vector<int> ret = kmp(H, N);
+
+	for(int i = 0; i < ret.size(); i++){
+		cout<<ret[i]<<" ":
+	}
+
+	return 0;
 }
