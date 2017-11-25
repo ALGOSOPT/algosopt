@@ -68,7 +68,8 @@ int main(){
 	group = vector<int>(N);
 
 	for(int i = 0; i < N; i++)
-		cout<<SA[i]<<" ";
+		//첫 번째 인덱스가 0인 경우
+ 		cout<<SA[i]<<" ";
 
 	return 0;
 }
