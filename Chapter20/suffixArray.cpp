@@ -41,13 +41,13 @@ void constructSA(){
 	}
 
 	for(d = 1; ; d *= 2){
-		sort(sa, sa + N, cmp);
+		sort(SA, SA + N, cmp);
 		//newGroup : 새로운 그룹 번호
 		vector<int> newGroup(N, 0);
 
 		//앞에서 부터 훑으면서 각 접미사가 서로 다른 그룹에 속할 때 마다 그룹번호 증가시킴
 		for(int i = 0; i < N - 1; i++)
-			newGroup[i + 1] = newGroup[i] + cmp(sa[i], sa[i + 1]);
+			newGroup[i + 1] = newGroup[i] + cmp(SA[i], SA[i + 1]);
 
 		//group배열을 newGroup 배열로 대체
 		for(int i = 0; i < N; i++)
