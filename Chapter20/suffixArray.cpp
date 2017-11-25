@@ -67,7 +67,8 @@ int main(){
 	SA = vector<int>(N);
 	group = vector<int>(N);
 
-
+	for(int i = 0; i < N; i++)
+		cout<<SA[i]<<" ";
 
 	return 0;
 }
