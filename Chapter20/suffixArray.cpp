@@ -41,7 +41,7 @@ void constructSA(){
 	}
 
 	for(d = 1; ; d *= 2){
-		sort(SA, SA + N, cmp);
+		sort(SA.begin(), SA.end(), cmp);
 		//newGroup : 새로운 그룹 번호
 		vector<int> newGroup(N, 0);
 
