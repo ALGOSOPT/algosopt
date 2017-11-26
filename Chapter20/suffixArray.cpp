@@ -47,6 +47,7 @@ void constructSA(){
 	for(d = 1; ; d *= 2) {
         // 그룹이 같을때와
 		sort(SA, SA + N, cmp);
+
 		//newGroup : 새로운 그룹 번호
 		vector<int> newGroup(N, 0);
 
