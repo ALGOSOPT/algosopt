@@ -88,6 +88,6 @@ int main(){
 			if(LCP[i+1] > LCP[i])
 			 result += LCP[i+1] - LCP[i];
 		}	
-		cout << result <<"\n";
+		printf("%lld\n", result);
 	}
 }
